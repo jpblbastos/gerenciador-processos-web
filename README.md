@@ -32,7 +32,7 @@ Este é um recurso legal :) . Para se bem dinâmico ele foi projetado, uma vez f
 sudo git clone https://github.com/jpblbastos/gerenciador-processos-web.git /var/www/html/gpw && sudo chown www-data:www-data /var/www/html/gpw -Rf && sudo mysql -u root -p < /var/www/html/gpw/sql/create.sql
 ```
 
-**Nota:** Lembre-se de mudar o comando chown caso esteja usado um S.O da familia RedHat, pois neles o usuário web é apache.
+**Nota:** Lembre-se de mudar o comando chown caso esteja usando um S.O da família RedHat, pois neles o usuário web é o apache.
 
 #### Ajustando as coisas
 Agora com a plicação baixada e instalada, basta alterar a senha do mysql no arquivo de configuração `config.php` para começar a usar, isso também é simples.
@@ -51,4 +51,5 @@ Agora se não sabe o seu ip e quer saber é muito fácil com o linux, em um term
 ifconfig eth0 | grep inet | awk '{ print $3 }'
 ```
 
-
+## Concluindo 
+Cada dia mais empresas buscam a modelagem de processos para organizar e melhorar seus procedimentos de trabalho. Este é um simples software que permite o gerencimento dos processos via web , concentrando em um único lugar e com poucos cliques o que se torna bem mais legal. 

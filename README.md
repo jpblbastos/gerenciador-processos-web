@@ -7,7 +7,10 @@ Este software é um gerenciador de processos elaborados apartir do [BizAgi - Biz
 ## Os recursos 
 
 #### Pesquisa de processos 
-Com este recurso pode-se fazer um pesquisa em todos os processos disponiveis cadastrados, basta apenas digitar o desejado e dar um simples  enter para submeter a pesquisa. 
-
+Com este recurso pode-se fazer uma pesquisa em todos os processos cadastrados, basta apenas digitar o desejado e dar um simples enter para submeter a pesquisa. 
 ![screenshot](https://github.com/jpblbastos/gerenciador-processos-web/blob/master/libs/img/pesquisar.png)
+
+#### Filtros
+Você pode também ordenar os resultados com os filtros `Todos|Novos|Top10`. 
+![screenshot](https://github.com/jpblbastos/gerenciador-processos-web/blob/master/libs/img/filtros.png)
 

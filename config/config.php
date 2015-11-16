@@ -36,7 +36,7 @@
 $nomeUser="root";
 
 //Senha do usuario
-$passWd="129004";
+$passWd="seu_senha";
 
 //Nome da Base de Dados
 $nomeDb="gerenciador_processos";

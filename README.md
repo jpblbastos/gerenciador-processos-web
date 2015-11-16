@@ -1,6 +1,6 @@
 ## Gerenciador de Processos Web
 
-Este software é um gerenciador de processos elaborados apartir do [BizAgi - Bizagi - Business Process Management](http://www.bizagi.com/). Foi projetado para ser simples, dinâmico e com uma instalação rápida (apenas um linha de código). 
+Este software é um gerenciador de processos elaborados apartir do [BizAgi - Bizagi - Business Process Management](http://www.bizagi.com/). Foi projetado para ser simples, dinâmico e com uma instalação rápida (apenas uma linha de código). 
 
 ![screenshot](https://github.com/jpblbastos/gerenciador-processos-web/blob/master/libs/img/tela-principal.png)
 

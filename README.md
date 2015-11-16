@@ -15,11 +15,11 @@ Você pode também ordenar os resultados com os filtros `Todos|Novos|Top10`.
 ![screenshot](https://github.com/jpblbastos/gerenciador-processos-web/blob/master/libs/img/filtros.png)
 
 #### Upload 
-Este é um recurso legal :) . Para se bem dinâmico ele foi projetado, uma vez feito o modelamento do processo no BizAgi e exportado para página web, basta clicar em upload digitar dados de indêntificação do processo (nome, descrição, etc) e selecionar os arquivos `json` e os `diagramas` do processo e enviá-lo. Pronto \o/ seu novo processo está disponível em sua rede de trabalho. 
+Este é um recurso legal :) para ser bem dinâmico ele foi projetado. Uma vez feito o modelamento do processo no BizAgi e exportado para página web, basta clicar em upload digitar dados de indêntificação do processo (nome, descrição, etc) e selecionar os arquivos `json` e os `diagramas` do processo e enviá-lo. Pronto \o/ seu novo processo está disponível em sua rede de trabalho. 
 ![screenshot](https://github.com/jpblbastos/gerenciador-processos-web/blob/master/libs/img/upload-form.png)
 
 #### Voltar ao gerenciador
-Quando um processo é escolhido, o usuário é então direcionado ao visualizador do processo, qua nada mais é a página gerada pelo bizagi, porém modificada internamente para atender as necessidades da aplicação. Uma modificação útil foi o `voltar ao gerenciador`, que redireciona o usuário para a página inicial. 
+Quando um processo é escolhido, o usuário é então direcionado ao visualizador do processo, que nada mais é a página gerada pelo bizagi, porém modificada internamente para atender as necessidades da aplicação. Uma modificação útil foi o `voltar ao gerenciador`, que redireciona o usuário para a página inicial da aplicação. 
 ![screenshot](https://github.com/jpblbastos/gerenciador-processos-web/blob/master/libs/img/view-modif.png)
 
 ## A instalação

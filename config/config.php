@@ -36,7 +36,7 @@
 $nomeUser="root";
 
 //Senha do usuario
-$passWd="seu_senha";
+$passWd="@@N@sa90sul##";
 
 //Nome da Base de Dados
 $nomeDb="gerenciador_processos";
@@ -57,4 +57,7 @@ $dirJson="json/";
 
 // diretorio para gravar os uploads png ref. aos diagramas 
 $dirDiagramas="files/diagrams/";
+
+// diretorio para gravar os uploads anexos
+$dirAttachments="files/attachments/";
 ?>

@@ -47,6 +47,13 @@
     * @var string
     */
     private $dirDiagramas='';
+    
+    /**
+    * dirAttachments
+    * Diretorio para gravas os uploads dos anexos
+    * @var string
+    */
+    private $dirAttachments='';
 
     /**
     * db
@@ -117,6 +124,7 @@
             // carrega propriedades da classe com os dados de configuração
             $this->dirJson        = $dirJson;
             $this->dirDiagramas   = $dirDiagramas;
+            $this->dirAttachments = $dirAttachments;
         } else {
             // caso não exista arquivo de configuração retorna erro
             echo "OPS, não foi localizado o arquivo de configuração :( ";
@@ -202,22 +210,27 @@
     * @param  string descricao
     * @param  array  config_json
     * @param  array  diagramas
+    * @param  array  anexos
     * @return booblean
     * 
     */
-    public function addProcesso($nome_processo='', $autor='', $versao='', $descricao='', $config_json='', $diagramas=''){
+    public function addProcesso($nome_processo='', $autor='', $versao='', $descricao='', $config_json='', $diagramas='', $anexos=''){
       /* inicializa sql */
       $this->sql='';
 
       if ( (!empty($nome_processo)) && (!empty($autor)) && (!empty($versao)) && (!empty($descricao)) && (!empty($config_json)) && (!empty($diagramas)) ) {
           /* Faz o upload do arquivo json */
-          // cria um novo nome para o arquivo json para noa haver duplicidade, pois o bizagi sempre o cria com o mesmo nome
+          // cria um novo nome para o arquivo json para não haver duplicidade, pois o bizagi sempre o cria com o mesmo nome
           $novo_nome_json=preg_replace('/\s/', '', $nome_processo).".json.js";
           if (!$this->__uploadJson($novo_nome_json,$config_json,$this->dirJson)) {
               return false;
           }
           /* Faz o upload dos diagramas */
           if (!$this->__uploadDiagramas($diagramas,$this->dirDiagramas)) {
+              return false;
+          }
+          /* Faz o upload dos anexos */
+          if (!$this->__uploadAttachments($anexos,$this->dirAttachments)) {
               return false;
           }
           /* monta sql */
@@ -380,4 +393,24 @@
         }
       return true; 
     } // fim__uploadDiagramas
+    
+    /**
+    * __uploadAttachments
+    * Faz o upload dos anexos
+    *
+    * @author joao paulo bastos <jpbl.bastos at gmail dot com>
+    * @param  array  $files
+    * @param  string $target
+    * @return boolean
+    * 
+    */
+    private function __uploadAttachments($files='',$target=''){
+        for ($k = 0; $k < count($files['name']); $k++){
+            if (!move_uploaded_file($files['tmp_name'][$k], $target.$files['name'][$k]) ) {
+                echo "<h1> Erro ao fazer upload do arquivo ".$files['name'][$k].". Verifique permissões !</h1>\n";
+                return false;
+            }
+        }
+      return true; 
+    } // fim__uploadAttachments
  }// fim da classe

@@ -48,6 +48,10 @@
         <h4>Diagramas:</h4>
         <p><input class="form-control" type="file" multiple="multiple" name="diagramas[]" required="required"/></p>
       </div>
+      <div class="col-md-6">
+        <h4>Anexos:</h4>
+        <p><input class="form-control" type="file" multiple="multiple" name="anexos[]"/></p>
+      </div>
     </div>
     <div class="modal-footer">
       <button type="button" data-dismiss="modal" class="btn btn-default">Desistir <i class="fa fa-ban"></i></button>

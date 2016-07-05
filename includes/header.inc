@@ -54,7 +54,7 @@
            <div class='content-filter' data-content-filter-type='tutorials' data-use-content-filter-type='true'>
              <form class="content-filter-form" action="index.php" accept-charset="UTF-8" method="post">
                  <div class='query-input-container'>
-                   <input type="text" name="search" id="" value="" placeholder="Pesquise Aqui :)" autocomplete="off" spellcheck="off" class="content-filter-query-input" onKeyPress="return submitenter(this,event)" />
+                   <input type="text" name="search" id="" value="" placeholder="Pesquise por setor, palavra chave, bem aqui :)" autocomplete="off" spellcheck="off" class="content-filter-query-input" onKeyPress="return submitenter(this,event)" />
                     <span class='icon icon-new-search query-icon'></span>
                  </div>
                </form>

@@ -36,9 +36,23 @@
         <h4>Versão:</h4>
         <p><input class="form-control" type="text" name="versao" placeholder="Ex: 1.0.0"  required="required" maxlength="6"/></p>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-6">
         <h4>Descrição:</h4>
-        <p><input class="form-control" type="text" name="descricao" placeholder="Ex: Este processo é um fluxo de trabalho completo usando Git/GitHub" required="required" required="required" maxlength="120"/></p>
+        <p><input class="form-control" type="text" name="descricao" placeholder="Ex: Este processo contempla fluxo blabla" required="required" maxlength="120"/></p>
+      </div>
+      <div class="col-md-6">
+        <h4>Categoria:</h4>
+        <select class="form-control" name="categoria" required="required">
+       	    <option value=""></option>
+       	    <option value="1">VEICULOS</option>
+            <option value="2">PEÇAS</option>
+	    <option value="3">SERVIÇOS</option>
+	    <option value="4">CONTABILIDADE</option>
+	    <option value="5">FINANCEIRO</option>
+	    <option value="6">JURIDICO</option>
+	    <option value="7">RH</option>
+	    <option value="8">TI</option>
+	</select>
       </div>
       <div class="col-md-6">
         <h4>Configuração Json:</h4>

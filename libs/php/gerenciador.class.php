@@ -214,14 +214,21 @@
     * @return booblean
     * 
     */
-    public function addProcesso($nome_processo='', $autor='', $versao='', $descricao='', $config_json='', $diagramas='', $anexos=''){
+    public function addProcesso($nome_processo='', $autor='', $versao='', $descricao='',  $categoria='', $config_json='', $diagramas='', $anexos=''){
       /* inicializa sql */
       $this->sql='';
 
-      if ( (!empty($nome_processo)) && (!empty($autor)) && (!empty($versao)) && (!empty($descricao)) && (!empty($config_json)) && (!empty($diagramas)) ) {
+      if ( (!empty($nome_processo)) && (!empty($autor)) && (!empty($versao)) && (!empty($descricao))  && (!empty($categoria)) && (!empty($config_json)) && (!empty($diagramas)) ) {
           /* Faz o upload do arquivo json */
           // cria um novo nome para o arquivo json para não haver duplicidade, pois o bizagi sempre o cria com o mesmo nome
           $novo_nome_json=preg_replace('/\s/', '', $nome_processo).".json.js";
+          //echo $nome_processo;
+          //echo $autor;
+          //echo $versao;
+          //echo $descricao;
+          //echo $categoria;
+          //print_r ($config_json);
+          //print_r ($diagramas);
           if (!$this->__uploadJson($novo_nome_json,$config_json,$this->dirJson)) {
               return false;
           }
@@ -230,12 +237,14 @@
               return false;
           }
           /* Faz o upload dos anexos */
-          if (!$this->__uploadAttachments($anexos,$this->dirAttachments)) {
-              return false;
+          if (!isset($anexos)){
+             if (!$this->__uploadAttachments($anexos,$this->dirAttachments)) {
+                 return false;
+             }
           }
           /* monta sql */
           $this->sql="INSERT INTO `processo`
-                        VALUES (NULL, '".$nome_processo."', '".$descricao."', '".$versao."', NOW(), '".$autor."', 0, '".$this->dirJson."".$novo_nome_json."', 1);";
+                        VALUES (NULL, '".$nome_processo."', '".$descricao."', '".$versao."', NOW(), '".$autor."', 0, '".$this->dirJson."".$novo_nome_json."', '".$categoria."' );";
       }
 
       /* Trabalhando com a base de dados */
@@ -276,53 +285,42 @@
                            processo.autor,
                            processo.contador,
                            processo.path_config,
+                           sub_categoria.nome,
                            categoria.nome
-                    FROM   (processo
-                            INNER JOIN categoria
-                                    ON processo.idcategoria_categoria = categoria.idcategoria)
+                        FROM   ((processo INNER JOIN sub_categoria ON processo.idsubcategoria_subcategoria = sub_categoria.idsubcategoria)
+                                          INNER JOIN categoria ON sub_categoria.idcategoria_categoria = categoria.idcategoria)
                     ORDER BY RAND();";
-        }elseif ($search == "novos") { // organiza do novo ao antigo
+        }elseif ( ($search == "comercial") || ($search == "backoffice") ) { // organiza por categoria
             $this->sql="SELECT processo.idprocesso,
-                           processo.nome,
-                           processo.descricao,
-                           processo.versao,
-                           processo.dd_modificado,
-                           processo.autor,
-                           processo.contador,
-                           processo.path_config,
-                           categoria.nome
-                    FROM   (processo
-                            INNER JOIN categoria
-                                    ON processo.idcategoria_categoria = categoria.idcategoria)
-                    ORDER BY dd_modificado DESC;";
-        }elseif ($search == "top10") { // os mais acessados
-            $this->sql="SELECT processo.idprocesso,
-                           processo.nome,
-                           processo.descricao,
-                           processo.versao,
-                           processo.dd_modificado,
-                           processo.autor,
-                           processo.contador,
-                           processo.path_config,
-                           categoria.nome
-                    FROM   (processo
-                            INNER JOIN categoria
-                                    ON processo.idcategoria_categoria = categoria.idcategoria)
-                    ORDER BY contador DESC;";
+                               processo.nome,
+                               processo.descricao,
+                               processo.versao,
+                               processo.dd_modificado,
+                               processo.autor,
+                               processo.contador,
+                               processo.path_config,
+                               sub_categoria.nome,
+                               categoria.nome
+                        FROM   ((processo INNER JOIN sub_categoria ON processo.idsubcategoria_subcategoria = sub_categoria.idsubcategoria)
+                                          INNER JOIN categoria ON sub_categoria.idcategoria_categoria = categoria.idcategoria)
+                        WHERE categoria.nome = '".$search."'
+                        ORDER BY dd_modificado DESC;";
         }else{ // pesquisa por palavra desejada
             $this->sql="SELECT processo.idprocesso,
-                           processo.nome,
-                           processo.descricao,
-                           processo.versao,
-                           processo.dd_modificado,
-                           processo.autor,
-                           processo.contador,
-                           processo.path_config,
-                           categoria.nome
-                    FROM   (processo
-                            INNER JOIN categoria
-                                    ON processo.idcategoria_categoria = categoria.idcategoria)
-                    WHERE processo.nome LIKE '%".$search."%';";
+                               processo.nome,
+                               processo.descricao,
+                               processo.versao,
+                               processo.dd_modificado,
+                               processo.autor,
+                               processo.contador,
+                               processo.path_config,
+                               sub_categoria.nome,
+                               categoria.nome
+                        FROM   ((processo INNER JOIN sub_categoria ON processo.idsubcategoria_subcategoria = sub_categoria.idsubcategoria)
+                                          INNER JOIN categoria ON sub_categoria.idcategoria_categoria = categoria.idcategoria)
+                        WHERE processo.nome like '%".$search."%'
+                        OR sub_categoria.nome like '%".$search."%'
+                        OR categoria.nome like '%".$search."%';";
         }
 
         /* Trabalhando com a base de dados */
@@ -339,7 +337,12 @@
         while($data = $this->db->fetch()){
         	  echo "<li class='tutorial'> ";
         	  echo "	<div class='feedable-details'>";
-        	  echo "		<h3><a href='view.php?id=".$data['0']."&path=".$data['7']."' title='".$data['2']."'>".$data['1']." - v ".$data['3']."</a></h3>";
+        	  echo "		<h3>";
+                  echo "                   <a href='view.php?id=".$data['0']."&path=".$data['7']."' title='".$data['2']."'>".$data['1']." - v ".$data['3']."</a>";
+                  echo "                   <a  class='series' data-toggle='tooltip' href='index.php?search=".$data['9']."' title=''>".$data['9']."</a> ";
+                  echo "                   <i class='fa fa-chevron-right' aria-hidden='true'></i>";
+                  echo "                   <a  class='series' data-toggle='tooltip' href='index.php?search=".$data['8']."' title=''>".$data['8']."</a>";
+                  echo "                </h3>";
               echo "		<div class='meta'>";
           	  echo "  		<div class='points'><span class='icon icon-share-square'></span></div>";
            	  echo "			<span class='author'>Por ";
@@ -367,7 +370,7 @@
     private function __uploadJson($novo_nome='', $files='',$target=''){
       if (count($files['name']) == 1) {
          if (!move_uploaded_file($files['tmp_name'], $target.$novo_nome )) {
-            echo "<h1> Erro ao fazer upload do arquivo ".$files['name'].". Verifique permissões !</h1>\n";
+            echo "<h1> Erro ao fazer upload de json do arquivo ".$files['name'].". Verifique permissões !</h1>\n";
             return false;
          }
       }
@@ -387,7 +390,7 @@
     private function __uploadDiagramas($files='',$target=''){
         for ($k = 0; $k < count($files['name']); $k++){
             if (!move_uploaded_file($files['tmp_name'][$k], $target.$files['name'][$k]) ) {
-                echo "<h1> Erro ao fazer upload do arquivo ".$files['name'][$k].". Verifique permissões !</h1>\n";
+                echo "<h1> Erro ao fazer upload de diagramas do arquivo ".$files['name'][$k].". Verifique permissões !</h1>\n";
                 return false;
             }
         }
@@ -407,7 +410,7 @@
     private function __uploadAttachments($files='',$target=''){
         for ($k = 0; $k < count($files['name']); $k++){
             if (!move_uploaded_file($files['tmp_name'][$k], $target.$files['name'][$k]) ) {
-                echo "<h1> Erro ao fazer upload do arquivo ".$files['name'][$k].". Verifique permissões !</h1>\n";
+                echo "<h1> Erro ao fazer upload de anexos do arquivo ".$files['name'][$k].". Verifique permissões !</h1>\n";
                 return false;
             }
         }

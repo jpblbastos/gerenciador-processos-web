@@ -40,40 +40,40 @@
                                    <a class='series feed-filter-link active'  href='index.php?search=todos'>Todos \o/</a>
                                 </li>
                                 <li>
-                                   <a class='newest feed-filter-link' href='index.php?search=novos'>Novos</a>
+                                   <a class='newest feed-filter-link' href='index.php?search=comercial'>Comercial</a>
                                 </li>
                                 <li>
-                                  <a class='popular feed-filter-link' href='index.php?search=top10'>Top 10</a>
+                                  <a class='popular feed-filter-link' href='index.php?search=backoffice'>Back Office</a>
                                 </li>\n";
-                        }elseif($search == "novos") {
+                        }elseif($search == "comercial") {
                            echo "<li>
                                    <a class='series feed-filter-link'  href='index.php?search=todos'>Todos</a>
                                 </li>
                                 <li>
-                                   <a class='newest feed-filter-link active' href='index.php?search=novos'>Novos \o/</a> 
+                                   <a class='newest feed-filter-link active' href='index.php?search=comercial'>Comercial \o/</a> 
                                 </li>
                                 <li>
-                                  <a class='popular feed-filter-link' href='index.php?search=top10'>Top 10</a>
+                                  <a class='popular feed-filter-link' href='index.php?search=backoffice'>Back Office</a>
                                 </li>\n";
-                        }elseif($search == "top10") {
+                        }elseif($search == "backoffice") {
                            echo "<li>
                                    <a class='series feed-filter-link'  href='index.php?search=todos'>Todos</a>
                                 </li>
                                 <li>
-                                   <a class='newest feed-filter-link' href='index.php?search=novos'>Novos</a> 
+                                   <a class='newest feed-filter-link' href='index.php?search=comercial'>Comercial</a> 
                                 </li>
                                 <li>
-                                  <a class='popular feed-filter-link active' href='index.php?search=top10'>Top 10 \o/</a>
+                                  <a class='popular feed-filter-link active' href='index.php?search=backoffice'>Back Office \o/</a>
                                 </li>\n";
                         }else{ //pesquisa por palavra desejada
                            echo "<li>
                                    <a class='series feed-filter-link'  href='index.php?search=todos'>Todos</a>
                                 </li>
                                 <li>
-                                   <a class='newest feed-filter-link' href='index.php?search=novos'>Novos</a>
+                                   <a class='newest feed-filter-link' href='index.php?search=comercial'>Comercial</a>
                                 </li>
                                 <li>
-                                  <a class='popular feed-filter-link' href='index.php?search=top10'>Top 10</a>
+                                  <a class='popular feed-filter-link' href='index.php?search=backoffice'>Back Office</a>
                                 </li>\n";
                         }
       echo "   			</ul>

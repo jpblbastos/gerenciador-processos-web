@@ -20,10 +20,11 @@
        exit;
     }
     // recebe post 
-    if ( (!empty($_POST['nome_processo'])) && (!empty($_POST['autor'])) && (!empty($_POST['versao'])) && (!empty($_POST['descricao'])) && (!empty($_FILES['config_json'])) && (!empty($_FILES['diagramas']))  ) {
-    	if ($oGPW->addProcesso($_POST['nome_processo'],$_POST['autor'],$_POST['versao'],$_POST['descricao'], $_FILES['config_json'], $_FILES['diagramas'], $_FILES['anexos'] ) ){
+    if ( (!empty($_POST['nome_processo'])) && (!empty($_POST['autor'])) && (!empty($_POST['versao'])) && (!empty($_POST['descricao'])) && (!empty($_FILES['config_json'])) && (!empty($_FILES['diagramas']))  && (!empty($_POST['categoria'])) ) {
+    	if ($oGPW->addProcesso($_POST['nome_processo'],$_POST['autor'],$_POST['versao'],$_POST['descricao'], $_POST['categoria'] , $_FILES['config_json'], $_FILES['diagramas'], $_FILES['anexos'] ) ){
     		 header("location: index.php");
     	}else{
+                 //print_r($_FILES['config_json']);
     		 echo "<h1>Desculpe o constrangimento mas não foi possivel adicionar um novo processo á sua base verifique permissões </h1><i class='fa fa-meh-o fa-4x'></i>";
     	}	
     }else{

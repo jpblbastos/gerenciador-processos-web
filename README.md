@@ -11,11 +11,11 @@ Com este recurso pode-se fazer uma pesquisa em todos os processos cadastrados, b
 ![screenshot](https://github.com/jpblbastos/gerenciador-processos-web/blob/master/libs/img/pesquisar.png)
 
 #### Filtros
-Você pode também ordenar os resultados com os filtros `Todos|Novos|Top10`. 
+Você pode também ordenar os resultados com os filtros Categorias ou SubCategorias. 
 ![screenshot](https://github.com/jpblbastos/gerenciador-processos-web/blob/master/libs/img/filtros.png)
 
 #### Upload 
-Este é um recurso legal :) para ser bem dinâmico ele foi projetado. Uma vez feito o modelamento do processo no BizAgi e exportado para página web, basta clicar em upload digitar dados de indêntificação do processo (nome, descrição, etc) e selecionar os arquivos `json` e os `diagramas` do processo e enviá-lo. Pronto \o/ seu novo processo está disponível em sua rede de trabalho. 
+Este é um recurso legal :) para ser bem dinâmico ele foi projetado. Uma vez feito o modelamento do processo no BizAgi e exportado para página web, basta clicar em upload digitar dados de indêntificação do processo (nome, descrição, etc) e selecionar os arquivos `json` os `diagramas` e `anexos` do processo e enviá-lo. Pronto \o/ seu novo processo está disponível em sua rede de trabalho. 
 ![screenshot](https://github.com/jpblbastos/gerenciador-processos-web/blob/master/libs/img/upload-form.png)
 
 #### Voltar ao gerenciador
